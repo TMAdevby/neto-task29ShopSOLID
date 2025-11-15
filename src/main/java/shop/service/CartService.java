@@ -6,11 +6,11 @@ import shop.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-// ✅ SRP: только управление корзиной
+// [SOLID: SRP] — только управление корзиной
 public class CartService {
     private final ProductRepository productRepository;
     private final List<Product> cart = new ArrayList<>();
-
+    // [SOLID: DIP] — зависимость через конструктор
     public CartService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
