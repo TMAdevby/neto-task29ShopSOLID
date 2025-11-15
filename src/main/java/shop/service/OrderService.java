@@ -6,12 +6,12 @@ import shop.repository.OrderRepository;
 
 import java.util.List;
 
-// ✅ SRP: только управление заказами
-// ✅ DIP: зависит от репозитория (абстракции — через конструктор)
+// [SOLID: SRP] — только логика заказов: создание, повтор, статус
+// [SOLID: DIP] — зависимости от репозиториев передаются через конструктор
 public class OrderService {
     private final OrderRepository orderRepository;
     private final CartService cartService;
-
+    // [SOLID: DIP] — конструктор с внедрением зависимостей
     public OrderService(OrderRepository orderRepository, CartService cartService) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
@@ -39,7 +39,7 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    // Повтор заказа
+    // [DRY] — повтор заказа использует существующую логику создания
     public Order repeatOrder(String orderId) {
         Order old = orderRepository.findById(orderId);
         if (old != null) {
