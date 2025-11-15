@@ -9,6 +9,9 @@ public class Order {
     private OrderStatus status;
 
     public Order(List<Product> products) {
+        // [SOLID: SRP + DRY]
+        // Генерация уникального ID вынесена в одну строчку через UUID.
+        // Не дублируется логика генерации ID в разных местах.
         this.orderId = UUID.randomUUID().toString();
         this.products = products;
         this.status = OrderStatus.CREATED;
