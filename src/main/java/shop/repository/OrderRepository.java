@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+// [SOLID: SRP] — только управление заказами как данными
 public class OrderRepository {
     private final Map<String, Order> orders = new HashMap<>();
 
