@@ -26,6 +26,9 @@ public class Product {
     public double getAverageRating() { return averageRating; }
 
     public void addRating(int rating) {
+        // [No Magic Numbers]
+        // Вместо "if (rating < 1 || rating > 5)" используем именованные константы.
+        // Это повышает читаемость и упрощает изменение диапазона в будущем.
         if (rating < MIN_RATING || rating > MAX_RATING) {
             throw new IllegalArgumentException("Rating must be between " + MIN_RATING + " and " + MAX_RATING);
         }
@@ -33,6 +36,9 @@ public class Product {
         this.ratingCount++;
     }
 
+    // [No Magic Numbers]
+    // Константы вместо "магических" чисел 1 и 5.
+    // Если завтра рейтинг станет от 0 до 10 — меняем только здесь.
     public static final int MIN_RATING = 1;
     public static final int MAX_RATING = 5;
 
