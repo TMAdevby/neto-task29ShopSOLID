@@ -17,7 +17,6 @@ public class Order {
         this.status = OrderStatus.CREATED;
     }
 
-    // Геттеры и сеттеры
     public String getOrderId() { return orderId; }
     public List<Product> getProducts() { return products; }
     public OrderStatus getStatus() { return status; }

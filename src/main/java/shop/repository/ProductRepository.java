@@ -4,7 +4,9 @@ import shop.model.Product;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
+// [SOLID: SRP — Single Responsibility Principle]
+// Этот класс отвечает только за хранение и извлечение данных.
+// Никакой бизнес-логики: фильтрации, поиска по смыслу.
 public class ProductRepository {
     private final Map<Long, Product> products = new HashMap<>();
 
@@ -19,11 +21,11 @@ public class ProductRepository {
     public void addProduct(Product product) {
         products.put(product.getId(), product);
     }
-
+    // [SOLID: SRP] — только "дай все товары", без обработки
     public List<Product> findAll() {
         return new ArrayList<>(products.values());
     }
-
+    // [SOLID: SRP] — только "дай по категории", без логики сортировки или фильтрации
     public List<Product> findByCategory(String category) {
         return products.values().stream()
                 .filter(p -> p.getCategory().equalsIgnoreCase(category))
