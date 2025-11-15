@@ -8,13 +8,14 @@ import shop.repository.OrderRepository;
 import shop.service.*;
 
 import java.util.Scanner;
-
+// [DRY] — вся логика взаимодействия вынесена в сервисы,
+// в main только оркестрация, без дублирования кода
 public class Main {
     public static void main(String[] args) {
-        // Инициализация
+
         ProductRepository productRepo = new ProductRepository();
         OrderRepository orderRepo = new OrderRepository();
-
+// [SOLID: DIP] — сервисы получают зависимости
         ProductService productService = new ProductService(productRepo);
         CartService cartService = new CartService(productRepo);
         OrderService orderService = new OrderService(orderRepo, cartService);
@@ -38,6 +39,7 @@ public class Main {
 
             switch (choice) {
                 case 1:
+                    // [DRY] — вызов одного метода вместо повторения цикла
                     productService.getAllProducts().forEach(p ->
                             System.out.println(p.getId() + ". " + p.getName() + " - " + p.getPrice() + " руб. (" + p.getCategory() + ")"));
                     break;
